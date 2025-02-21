@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
  * subscribe timer
  * unsubscribe subscriptions in onDestroy
  * create Cache for Api response
+ * if SearchInput Exits in cache show from cache ignore API call
  */
 @Component({
     selector: 'app-root',
