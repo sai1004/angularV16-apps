@@ -1,0 +1,22 @@
+.main__app {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 402px;
+    .search__input {
+        input {
+            width: 400px;
+            padding: 6px;
+        }
+    }
+    .search__results {
+        border: 1px solid black;
+        width: 400px;
+        max-height: 500px;
+        overflow-y: scroll;
+        text-align: start;
+        p:hover {
+            background-color: lightgrey;
+        }
+    }
+}
