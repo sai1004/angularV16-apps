@@ -26,6 +26,9 @@
                     <input type="text" name="pin2" formControlName="pin2" (keydown)="validateNumberInput($event)" />
                     <input type="text" name="pin3" formControlName="pin3" (keydown)="validateNumberInput($event)" />
                     <input type="text" name="pin4" formControlName="pin4" (keydown)="validateNumberInput($event)" />
+                    <div class="error-feedback" *ngIf="errorMessage">
+                        <p>{{ errorMessage }}</p>
+                    </div>
                     <p>Haven't recieved the otp <a (click)="genrateOtp()"> Resend</a></p>
                     <button type="submit">Verify</button>
                 </form>

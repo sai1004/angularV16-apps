@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
         Validators.minLength(1),
         Validators.pattern('^[0-9]*$'),
     ];
+    errorMessage: string = '';
 
     constructor(private fb: FormBuilder) {
         this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
         if (!/^[0-9]$/.test(event.key) && !allowedKeys.includes(event.key)) {
             event.preventDefault(); // Prevent non-numeric input
         }
+        this.errorMessage ? (this.errorMessage = '') : '';
     }
 
     onVerify() {
@@ -58,6 +60,7 @@ export class AppComponent implements OnInit {
             if (this.otpPin === Number(enteredPin)) {
                 console.log('OTP Mateched & Email Verified!!');
             } else {
+                this.errorMessage = 'Invalid pin entered, please enter valid pin';
                 this.otpForm.reset();
             }
         }
