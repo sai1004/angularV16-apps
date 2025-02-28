@@ -1,0 +1,35 @@
+<main class="main__app">
+    <p>OTP: {{ otpPin }}</p>
+    <div class="container__otp-verify">
+        <div class="content">
+            <h1>Verify your email</h1>
+        </div>
+        <div class="email__input-section">
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/2913/2913133.png" alt="" />
+            </div>
+            <div class="email__input" *ngIf="isEmailTemplate">
+                <label for="email"> Enter your email</label>
+                <br />
+                <input type="email" [formControl]="email" name="email" placeholder="Ex: example@xyz.com" />
+                <div class="error-feedback" *ngIf="email.errors && email.touched">
+                    <p class="error-message" *ngIf="email.errors['required']">Email is required</p>
+                    <p class="error-message" *ngIf="email.errors['email']">Email must be valid</p>
+                    <!-- <p class="error-message">{{ email | json }}</p> -->
+                </div>
+                <button (click)="onNext()">Next</button>
+            </div>
+            <div class="otp__input" *ngIf="!isEmailTemplate">
+                <p>Please enter OTP sent to your Email {{ email.value.slice(0, 2) }}xxx@xyz.com</p>
+                <form [formGroup]="otpForm" (ngSubmit)="onVerify()">
+                    <input type="text" name="pin1" formControlName="pin1" (keydown)="validateNumberInput($event)" />
+                    <input type="text" name="pin2" formControlName="pin2" (keydown)="validateNumberInput($event)" />
+                    <input type="text" name="pin3" formControlName="pin3" (keydown)="validateNumberInput($event)" />
+                    <input type="text" name="pin4" formControlName="pin4" (keydown)="validateNumberInput($event)" />
+                    <p>Haven't recieved the otp <a (click)="genrateOtp()"> Resend</a></p>
+                    <button type="submit">Verify</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
