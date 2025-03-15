@@ -1,0 +1,11 @@
+<main class="app">
+    <section class="container-box">
+        <ng-container *ngFor="let row of grid; let rowIdx = index">
+            <div class="row">
+                <ng-container *ngFor="let cell of row; let colIdx = index">
+                    <div [ngClass]="cell == 0 ? 'cell' : 'active-cell'" (click)="onClickOfCell(rowIdx,colIdx)">{{ cell }}</div>
+                </ng-container>
+            </div>
+        </ng-container>
+    </section>
+</main>

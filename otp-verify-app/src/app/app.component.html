@@ -20,7 +20,7 @@
                 <button (click)="onNext()">Next</button>
             </div>
             <div class="otp__input" *ngIf="!isEmailTemplate">
-                <p>Please enter OTP sent to your Email {{ email.value.slice(0, 2) }}xxx@xyz.com</p>
+                <p>Please enter OTP sent to your email {{ email?.value?.slice(0, 2) }}xxx@xyz.com</p>
                 <form [formGroup]="otpForm" (ngSubmit)="onVerify()">
                     <input type="text" name="pin1" formControlName="pin1" (keydown)="validateNumberInput($event)" />
                     <input type="text" name="pin2" formControlName="pin2" (keydown)="validateNumberInput($event)" />

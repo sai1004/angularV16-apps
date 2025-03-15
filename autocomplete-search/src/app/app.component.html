@@ -6,15 +6,10 @@
         <input type="search" [formControl]="searchInput" (focus)="isShowResult = true" (blur)="isShowResult = false" />
     </div>
     <div *ngIf="isShowResult">
-        <div [ngClass]="isShowResult && searchResult.length > 0 ? 'search__results' : ''">
+        <div [ngClass]="isShowResult ? 'search__results' : ''">
             <div *ngFor="let result of searchResult">
                 <p>{{ result?.name }}</p>
             </div>
         </div>
     </div>
 </main>
-<p> Heelooo </p>
-<p> Heelooo </p>
-<p> Heelooo </p>
-<p> Heelooo </p>
-<p> Heelooo </p>

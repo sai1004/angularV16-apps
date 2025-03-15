@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { debounceTime, pipe, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { debounceTime, pipe, distinctUntilChanged, Subject, takeUntil, switchMap, catchError, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 /**
  *  ------ Aproach ------
@@ -26,29 +26,47 @@ export class AppComponent implements OnInit, OnDestroy {
     cacheResult: any = {};
     destroy$ = new Subject();
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private http: HttpClient) {
         this.searchInput = new FormControl();
         this.searchInput.valueChanges
-            .pipe(debounceTime(400), distinctUntilChanged(), takeUntil(this.destroy$))
-            .subscribe((value: any) => {
-                this.getSearchResult(value);
+            .pipe(
+                debounceTime(400), // Wait for 400ms pause in typing
+                distinctUntilChanged(), // Ignore duplicate values
+                takeUntil(this.destroy$),
+                switchMap((searchTerm) => {
+                    if (!searchTerm.trim()) {
+                        this.searchResult = [];
+                        return of([]);
+                    } else if (this.cacheResult[searchTerm]) {
+                        return of(this.cacheResult[searchTerm]);
+                    } else {
+                        return this.getSearchResult(searchTerm);
+                    }
+                }),
+                catchError((err) => {
+                    return of(err);
+                })
+            )
+            .subscribe((result: any) => {
+                console.log('result', result);
+                this.searchResult = result?.recipes;
+                this.cacheResult[this.searchInput.value] = this.searchResult;
             });
     }
 
     ngOnInit(): void {}
 
     getSearchResult(query: string) {
-        if (this.cacheResult[query]) {
-            this.searchResult = this.cacheResult[query];
-            return;
-        }
-        this.httpClient
-            .get('https://dummyjson.com/recipes/search?q=' + query)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((response: any) => {
-                this.searchResult = response?.recipes;
-                this.cacheResult[query] = response?.recipes;
-            });
+        // if (this.cacheResult[query]) {
+        //     this.searchResult = this.cacheResult[query];
+        //     return;
+        // }
+        return this.http.get('https://dummyjson.com/recipes/search?q=' + query);
+        // .pipe(takeUntil(this.destroy$))
+        // .subscribe((response: any) => {
+        //     this.searchResult = response?.recipes;
+        //     this.cacheResult[query] = response?.recipes;
+        // });
     }
 
     ngOnDestroy(): void {
