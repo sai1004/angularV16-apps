@@ -1,0 +1,38 @@
+.app {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: darkslategrey;
+
+    .container-form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: min-content;
+        padding: 10px;
+        border: 1px solid aliceblue;
+        color: aliceblue;
+        margin: 10px;
+
+        input {
+            width: 300px;
+            padding: 6px;
+            border-radius: 6px;
+            border: none;
+            border: 1px solid black;
+            outline: none;
+            margin: 8px 0 8px 0;
+        }
+
+        button {
+            cursor: pointer;
+            width: 100%;
+            padding: 6px;
+            margin: 8px 0 8px 0;
+            border: 1px solid black;
+            outline: none;
+        }
+    }
+}
