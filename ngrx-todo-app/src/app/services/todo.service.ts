@@ -14,4 +14,18 @@ export class TodoService {
     getTodos(): Observable<Todo[]> {
         return this.http.get<Todo[]>(this.apiUrl);
     }
+
+    addTodo(todo: Todo): Observable<Todo> {
+        return this.http.post<Todo>(this.apiUrl, todo);
+    }
+
+    deleteTodo(id: number): Observable<void> {
+        console.log(" delete ID >>", id)
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    }
+
+    toggleTodo(id: number): Observable<Todo> {
+        console.log(" toggleTodo ID >>", id)
+        return this.http.patch<Todo>(`${this.apiUrl}/${id}`, { completed: true });
+    }
 }

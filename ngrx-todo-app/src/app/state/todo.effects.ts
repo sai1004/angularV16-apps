@@ -20,9 +20,39 @@ export class TodoEffects {
         )
     );
 
-    // addTodo$ = createEffect(() => this.actions$);
+    addTodo$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(TodoActions.addTodo),
+            mergeMap((action) =>
+                this.todoService.addTodo(action.todo).pipe(
+                    map((todo) => TodoActions.addTodoSuccess({ todo })),
+                    catchError((error) => of(TodoActions.addTodoFailure({ error })))
+                )
+            )
+        )
+    );
 
-    // removeTodo$ = createEffect(() => this.actions$);
+    removeTodo$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(TodoActions.removeTodo),
+            mergeMap((action) =>
+                this.todoService.deleteTodo(action.id).pipe(
+                    map(() => TodoActions.removeTodoSuccess({ id: action.id })),
+                    catchError((error) => of(TodoActions.removeTodoFailure({ error })))
+                )
+            )
+        )
+    );
 
-    // toggleTodo$ = createEffect(() => this.actions$);
+    toggleTodo$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(TodoActions.toggleTodo),
+            mergeMap((action) =>
+                this.todoService.toggleTodo(action.id).pipe(
+                    map(() => TodoActions.toggleTodoSuccess({ id: action.id })),
+                    catchError((error) => of(TodoActions.toggleTodoFailure({ error })))
+                )
+            )
+        )
+    );
 }

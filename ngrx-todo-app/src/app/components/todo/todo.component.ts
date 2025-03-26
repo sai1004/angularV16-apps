@@ -22,9 +22,16 @@ export class TodoComponent implements OnInit {
         this.store.dispatch(TodoActions.loadTodos());
     }
 
-    addTodo() {}
+    addTodo(): void {
+        const todo: Todo = { id: Date.now(), title: this.newTodoTitle, completed: false };
+        this.store.dispatch(TodoActions.addTodo({ todo }));
+    }
 
-    toggleTodo(id: number) {}
+    toggleTodo(id: number) {
+        this.store.dispatch(TodoActions.toggleTodo({ id }));
+    }
 
-    removeTodo(id: number) {}
+    removeTodo(id: number) {
+        this.store.dispatch(TodoActions.removeTodo({ id }));
+    }
 }
