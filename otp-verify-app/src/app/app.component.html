@@ -20,12 +20,41 @@
                 <button (click)="onNext()">Next</button>
             </div>
             <div class="otp__input" *ngIf="!isEmailTemplate">
-                <p>Please enter OTP sent to your email {{ email?.value?.slice(0, 2) }}xxx@xyz.com</p>
+                <p >Please enter OTP sent to your email {{ email.value?.slice(0, 2) }}xxx@xyz.com</p>
                 <form [formGroup]="otpForm" (ngSubmit)="onVerify()">
-                    <input type="text" name="pin1" formControlName="pin1" (keydown)="validateNumberInput($event)" />
-                    <input type="text" name="pin2" formControlName="pin2" (keydown)="validateNumberInput($event)" />
-                    <input type="text" name="pin3" formControlName="pin3" (keydown)="validateNumberInput($event)" />
-                    <input type="text" name="pin4" formControlName="pin4" (keydown)="validateNumberInput($event)" />
+                    <input
+                        type="number"
+                        name="pin1"
+                        formControlName="pin1"
+                        (keydown)="validateNumberInput($event)"
+                        (input)="moveFocus(0, $event)"
+                        autofocus
+                        #otpInput
+                    />
+                    <input
+                        type="number"
+                        name="pin2"
+                        formControlName="pin2"
+                        (input)="moveFocus(1, $event)"
+                        (keydown)="validateNumberInput($event)"
+                        #otpInput
+                    />
+                    <input
+                        type="number"
+                        name="pin3"
+                        formControlName="pin3"
+                        (input)="moveFocus(2, $event)"
+                        (keydown)="validateNumberInput($event)"
+                        #otpInput
+                    />
+                    <input
+                        type="number"
+                        name="pin4"
+                        formControlName="pin4"
+                        (input)="moveFocus(3, $event)"
+                        (keydown)="validateNumberInput($event)"
+                        #otpInput
+                    />
                     <div class="error-feedback" *ngIf="errorMessage">
                         <p>{{ errorMessage }}</p>
                     </div>

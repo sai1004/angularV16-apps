@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,13 +11,10 @@ export class AppComponent implements OnInit {
     isEmailTemplate: boolean = true;
     otpForm: FormGroup;
     otpPin: number = 0;
-    otpValidators: any = [
-        Validators.required,
-        Validators.maxLength(1),
-        Validators.minLength(1),
-        Validators.pattern('^[0-9]*$'),
-    ];
+    otpValidators: any = [Validators.required, Validators.min(1), Validators.max(1), Validators.pattern('^[0-9]*$')];
     errorMessage: string = '';
+
+    @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
 
     constructor(private fb: FormBuilder) {
         this.email = new FormControl('', [Validators.required, Validators.email]);
@@ -25,6 +22,12 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {}
+
+    moveFocus(index: number, event: any): void {
+        if (event.target.value && index < this.otpInputs.length - 1) {
+            this.otpInputs.get(index + 1)?.nativeElement.focus();
+        }
+    }
 
     createOtpForm() {
         return this.fb.group({
