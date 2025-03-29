@@ -40,6 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     getCoinsList() {
         if (this.isLoading) return;
         this.isLoading = true;
+        // `https://randomuser.me/api/?results=100`
         this.http
             .get(
                 `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${this.limit}2&page=${this.page}&sparkline=false`
