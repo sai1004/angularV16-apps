@@ -1,0 +1,32 @@
+<div class="app">
+    <div class="container">
+        <h2 class="title">Infinite Scroll APP!!</h2>
+        <ng-container *ngFor="let user of users">
+            <div class="user-card">
+                <div class="flex-row">
+                    <div class="flex-item-1">
+                        <img [src]="user.picture.large" alt="img" />
+                    </div>
+                    <div class="flex-item-2">
+                        <p>
+                            <b>Name: </b><span>{{ user.name.title + " " }}</span>
+                            <span>{{ user.name.first + " " }}</span>
+                            <span>{{ user.name.last }}</span>
+                        </p>
+                        <p>
+                            <b> Email: </b> <span>{{ user.email }}</span>
+                        </p>
+                        <p>
+                            <b>Gender: </b> <span>{{ user.gender }}</span>
+                        </p>
+                        <p>
+                            <b> Age: </b> <span>{{ user.dob.age }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div>Loading...</div>
+    <div #pageEnd></div>
+</div>

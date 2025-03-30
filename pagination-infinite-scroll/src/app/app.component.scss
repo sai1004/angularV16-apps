@@ -1,0 +1,35 @@
+.app {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+
+    .container {
+        width: 520px;
+        .title {
+            text-align: center;
+        }
+        .user-card {
+            padding: 4px;
+            margin: 6px;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            background-color: white;
+            .flex-row {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-around;
+                gap: 10px;
+                .flex-item-1 {
+                    width: 30%;
+                    img {
+                        border-radius: 8px;
+                    }
+                }
+                .flex-item-2 {
+                    width: 70%;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}
