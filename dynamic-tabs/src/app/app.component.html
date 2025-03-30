@@ -1,0 +1,15 @@
+<main class="app">
+    <section class="tabs-group">
+        <div class="tabs-container">
+            <ng-container *ngFor="let tab of tabs; let i = index">
+                <button class="btn" #tabBtns (click)="onClickTab(i)">{{ tab }}</button>
+            </ng-container>
+        </div>
+    </section>
+
+    <section>
+        <div class="tab-content">
+            <app-tab-content [type]="activeTab"></app-tab-content>
+        </div>
+    </section>
+</main>

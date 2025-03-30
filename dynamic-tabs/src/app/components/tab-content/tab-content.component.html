@@ -1,0 +1,14 @@
+<p>tab-content works!</p>
+
+<p>active tab: {{ type }}</p>
+
+<ng-template [ngIf]="type == 'Monday'">
+    <div>
+        <h2>Hello Monday Content!!</h2>
+    </div>
+</ng-template>
+<ng-template [ngIf]="type != 'Monday'">
+    <div>
+        <h2>Default Content!!</h2>
+    </div>
+</ng-template>
