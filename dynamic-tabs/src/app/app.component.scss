@@ -41,10 +41,14 @@
     }
 
     .tab-content {
-        padding: 10px;
         margin-top: 10px;
         height: 400px;
         width: 100%;
+        border-radius: 20px;
+        background-color: white;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        .tab-content-body {
+            padding: 10px;
+        }
     }
 }

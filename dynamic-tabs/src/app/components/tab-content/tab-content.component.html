@@ -7,7 +7,12 @@
         <h2>Hello Monday Content!!</h2>
     </div>
 </ng-template>
-<ng-template [ngIf]="type != 'Monday'">
+<ng-template [ngIf]="type == 'Thursday'">
+    <div>
+        <h2>Hello Thursday Content!!</h2>
+    </div>
+</ng-template>
+<ng-template [ngIf]="!['Monday', 'Thursday'].includes(type)">
     <div>
         <h2>Default Content!!</h2>
     </div>
