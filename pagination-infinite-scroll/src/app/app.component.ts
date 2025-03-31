@@ -24,13 +24,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     setupInterSectionPoint() {
         let intersectionObserver = new IntersectionObserver((enteries) => {
             if (enteries[0].isIntersecting) {
-                this.loadUsers();
+                this.loadMoreUsers();
             }
         });
         intersectionObserver.observe(this.pageEnd.nativeElement);
     }
 
-    loadUsers(): void {
+    loadMoreUsers(): void {
         this.http
             .get(`https://randomuser.me/api/?results=100`)
             .pipe(takeUntil(this.destroy$))

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +9,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     tabs: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     activeTab: string = '';
 
-    @ViewChildren('tabBtns') tabBtns!: QueryList<any>;
+    @ViewChildren('tabBtns') tabBtns!: QueryList<ElementRef>;
 
     constructor() {}
 
