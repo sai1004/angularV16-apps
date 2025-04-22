@@ -1,0 +1,14 @@
+<div class="custom-input">
+    <label *ngIf="label">{{ label }}</label>
+    <input
+        [type]="type"
+        [value]="value"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        (input)="handleInput($event)"
+        (blur)="markTouched()"
+    />
+    <div class="errors" *ngIf="showErrors">
+        <small class="error" *ngFor="let error of errorMessages">{{ error }}</small>
+    </div>
+</div>

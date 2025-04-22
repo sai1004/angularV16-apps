@@ -1,0 +1,17 @@
+.errors {
+    margin-top: 4px;
+    color: #e74c3c;
+    font-size: 12px;
+  }
+  .custom-input {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+  }
+  
