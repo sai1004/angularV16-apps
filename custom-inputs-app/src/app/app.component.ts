@@ -18,16 +18,8 @@ export class AppComponent implements OnInit {
         });
     }
 
-    // Example: Fetching comments for multiple posts concurrently
-    postIds = [1, 2, 3];
-
     ngOnInit(): void {
-        of(...this.postIds)
-            .pipe(mergeMap((postId) => this.http.get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)))
-            .subscribe((comments) => {
-                // Handle comments from all posts as they arrive
-                console.log(comments);
-            });
+        
     }
 
     get emailControl(): FormControl {
