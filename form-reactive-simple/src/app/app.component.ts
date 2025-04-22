@@ -15,9 +15,13 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    getControl(controlName: string) {
+        return this.profileForm.get(controlName)!;
+    }
+
     createProfileForm() {
         return this.fb.group({
-            name: ['', Validators.required],
+            name: ['', [Validators.required, Validators.minLength(4)]],
             email: ['', Validators.required],
             mobile: ['', Validators.required],
             age: ['', Validators.required],
@@ -25,8 +29,8 @@ export class AppComponent implements OnInit {
     }
 
     onSubmit() {
-        if(this.profileForm.valid){
-            console.log(this.profileForm.value)
+        if (this.profileForm.valid) {
+            console.log(this.profileForm.value);
         }
     }
 }

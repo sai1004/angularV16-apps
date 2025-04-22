@@ -29,4 +29,7 @@ export class AppComponent implements OnInit {
     get ageControl(): FormControl {
         return this.form.get('age') as FormControl;
     }
+
+    // https://timdeschryver.dev/blog/working-with-angular-forms-in-an-enterprise-environment
+    // https://coryrylan.com/blog/building-reusable-forms-in-angular
 }

@@ -3,25 +3,103 @@
         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="name"> Name: </label>
-                <input type="text" class="form-control" name="name" formControlName="name" placeholder="Name" />
+                <input
+                    type="text"
+                    class="form-control"
+                    [ngClass]="{
+                        'is-invalid':
+                            getControl('name').invalid && (getControl('name').dirty || getControl('name').touched)
+                    }"
+                    name="name"
+                    formControlName="name"
+                    placeholder="Name"
+                />
+                <div
+                    *ngIf="getControl('name').invalid && (getControl('name').dirty || getControl('name').touched)"
+                    class="invalid-feedback"
+                >
+                    <div *ngIf="getControl('name').errors?.['required']">
+                        <small>Name is required.</small>
+                    </div>
+                    <div *ngIf="getControl('name').errors?.['minlength']">
+                        <small>Name must be at least 4 characters long.</small>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="email"> Email: </label>
-                <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email " />
+                <input
+                    type="email"
+                    class="form-control"
+                    [ngClass]="{
+                        'is-invalid':
+                            getControl('email').invalid && (getControl('email').dirty || getControl('email').touched)
+                    }"
+                    name="email"
+                    formControlName="email"
+                    placeholder="Email "
+                />
+                <div
+                    *ngIf="getControl('email').invalid && (getControl('email').dirty || getControl('email').touched)"
+                    class="invalid-feedback"
+                >
+                    <div *ngIf="getControl('email').errors?.['required']">
+                        <small>Email is required.</small>
+                    </div>
+                    <div *ngIf="getControl('email').errors?.['minlength']">
+                        <small>Email must be at least 4 characters long.</small>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="mobile"> Mobile: </label>
                 <input
                     type="text"
                     class="form-control"
+                    [ngClass]="{
+                        'is-invalid':
+                            getControl('mobile').invalid && (getControl('mobile').dirty || getControl('mobile').touched)
+                    }"
                     name="mobile"
                     formControlName="mobile"
                     placeholder="1234567890"
                 />
+                <div
+                    *ngIf="getControl('mobile').invalid && (getControl('mobile').dirty || getControl('mobile').touched)"
+                    class="invalid-feedback"
+                >
+                    <div *ngIf="getControl('mobile').errors?.['required']">
+                        <small>Mobile is required.</small>
+                    </div>
+                    <div *ngIf="getControl('mobile').errors?.['minlength']">
+                        <small>Mobile must be at least 4 characters long.</small>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="age"> Age: </label>
-                <input type="text" class="form-control" name="age" formControlName="age" placeholder="Ex: 25" />
+                <input
+                    type="text"
+                    class="form-control"
+                    [ngClass]="{
+                        'is-invalid':
+                            getControl('age').invalid && (getControl('age').dirty || getControl('age').touched)
+                    }"
+                    name="age"
+                    formControlName="age"
+                    placeholder="Ex: 25"
+                />
+                <div
+                    *ngIf="getControl('age').invalid && (getControl('age').dirty || getControl('age').touched)"
+                    class="invalid-feedback"
+                >
+                    <div *ngIf="getControl('age').errors?.['required']">
+                        <small>Age is required.</small>
+                    </div>
+                    <div *ngIf="getControl('age').errors?.['minlength']">
+                        <small>Age must be at least 4 characters long.</small>
+                    </div>
+                </div>
             </div>
             <div class="form-actions">
                 <button type="submit">Submit</button>
