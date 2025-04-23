@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
     tabs: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     activeTab: string = '';
 
@@ -14,8 +14,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     constructor() {}
 
     ngOnInit(): void {}
-
-    ngAfterViewInit(): void {}
 
     onClickTab(index: number) {
         this.tabBtns.forEach((btn, i) => {
